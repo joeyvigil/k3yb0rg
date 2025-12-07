@@ -7,6 +7,8 @@ v4n4g0n inspired, 3d printable keyboard
 ![K3YB0RG](images/assem_pic.jpg)
 ![K3YB0RG](images/assem_pic2.jpg)
 ![K3YB0RG](images/assem_pic3.jpg)
+![K3YB0RG](images/top_diss.jpg)
+![K3YB0RG](images/top_diss2.jpg)
 
 ## Materials
 1. 3D Printer
