@@ -42,10 +42,10 @@ v4n4g0n inspired, 3d printable keyboard
 ### Rows
 
 1. Place all switches into the top case pieces.
-2. Put in space key Stabilizer (you'll regret having to desolder later if you don't do it now)
+2. Put in space key Stabilizer (you'll regret having to de-solder later if you don't do it now)
 3. Solder a diode to each switch, making sure the black side of the diode is facing down. *Example image below:*
    ![Diode Orientation](images/rows.jpg)
-4. Solder a wire at the end of each row of switches
+4. Solder a wire at the end of each row of switches (this will go to the micro-controller).
 
 ### Columns
 1. Cut pieces of wire long enough to reach from the top of the switch to the micro-controller pins.
@@ -69,6 +69,7 @@ the top row (ROW 0) should go to D3 on the Pro Micro, the second row (ROW 1) to 
 4. Open QMK Toolbox and flash the k3yb0rg.hex file to the micro-controller.
    - open hex file
    - check "Auto-flash"
+   - make sure the correct micro-controller is selected (ATmega32U4 for Pro Micro)
    - press reset button on micro-controller (if available) or short RST to GND
    - wait for "Flash complete!" message
 5. Your keyboard should now be functional open keyboard tester to verify all keys work: [Keyboard Tester](https://www.keyboardtester.com/)
