@@ -102,6 +102,9 @@ you can edit the layers using keyboard firmware builder or QMK Configurator. (Us
 Here is an old video guide I made for a previous keyboard:
 [![K3YB0RG Build Guide](https://img.youtube.com/vi/XAc28t4e77w/0.jpg)](https://www.youtube.com/watch?v=XAc28t4e77w)
 
+## Timelapse
+
+[![K3YB0RG Timelapse](https://img.youtube.com/vi/-jxHc12UWSU/0.jpg)](https://youtu.be/-jxHc12UWSU)
 
 ## Thanks for Playing!
 
