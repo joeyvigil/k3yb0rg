@@ -24,6 +24,7 @@ v4n4g0n inspired, 3d printable keyboard
 11. Soldering Iron (A basic soldering iron will do, quality does not matter too much)
 12.  Solder (60-40 rosin core solder works best)
 13.  Solder Sucker
+14.  Zip Ties (for securing micro-controller)
 
 ## 3d Print
 
