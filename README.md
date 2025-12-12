@@ -106,5 +106,4 @@ Here is an old video guide I made for a previous keyboard:
 
 [![K3YB0RG Timelapse](https://img.youtube.com/vi/-jxHc12UWSU/0.jpg)](https://youtu.be/-jxHc12UWSU)
 
-## Thanks for Playing!
-
+## Thanks
