@@ -1,4 +1,4 @@
-# \_\_K3YB0RG\_\_
+# K3YB0RG
 
 v4n4g0n inspired, 3d printable keyboard
 
@@ -18,7 +18,7 @@ v4n4g0n inspired, 3d printable keyboard
 5. Keycaps
 6. Stabilizers (6.25u Cherry style for space bar)
 7. Micro-Controller (I used a Pro Micro with USB C, but others with ATmega32U4 will work)
-8. Nuts and Bolts (12 3M x 16mm hex screws and nuts)
+8. Nuts and Bolts (12 M3 x 16mm hex screws and nuts)
 9. Wire (I've had the most luck only using 20-28 awg solid core wire. I use the soldering iron to remove insulation.)
 10. USB Cable (USB C to USB A in my case)
 11. Soldering Iron (A basic soldering iron will do, quality does not matter too much)
@@ -26,14 +26,14 @@ v4n4g0n inspired, 3d printable keyboard
 13.  Solder Sucker
 14.  Zip Ties (for securing micro-controller)
 
-## 3d Print
+## 3D Printing
 
 1. Download the STL files from the releases section.
 2. Slice the files using your preferred slicer settings. I recommend using:
    - a layer height of 0.2mm
    - printing at 90% infill 
    - a brim for better bed adhesion
-   - supports for bot parts
+   - supports for the bottom parts
 3. Print the following parts:
     - V4N_bot_left.stl (fits a wide range of micro-controllers)
     - V4N_bot_right.stl
@@ -70,8 +70,8 @@ The photos below show the same thing on a real board.
 
 1. Place all switches into the top case pieces.
 2. Put in space key Stabilizer (you'll regret having to de-solder later if you don't do it now)
-3. Solder a diode to each switch, making sure the black side of the diode is facing down. *Example image below:*
-   ![Diode Orientation](images/rows.jpg)
+3. Solder a diode to each switch with the **black band facing the row wire** (it points down in the photo below):
+   ![A row of switches with a diode soldered to each, black band facing the row wire](images/rows.jpg)
 4. Solder a wire at the end of each row of switches (this will go to the micro-controller).
 
 ### Columns
@@ -80,14 +80,10 @@ The photos below show the same thing on a real board.
     - **Tip:** I like to burn away the insulation on the wire at the points where I want to solder.
 ![Column Wiring](images/wiring.jpg)
 
-### Micro-controller
-1. Solder wires to the micro-controller in the following configuration:
-![Micro-controller Wiring](images/pins.jpg)
-![Micro-controller Soldering](images/pro_micro_pinout.jpg)
-
-**clarification:**
-
-the top row (ROW 0) should go to D3 on the Pro Micro, the second row (ROW 1) to D2, continue with the rest of the PINS diagram.
+### Microcontroller
+1. Solder wires to the microcontroller in the following configuration:
+![kbfirmware pin assignment for the Pro Micro](images/pins.jpg)
+![Pro Micro pinout reference](images/pro_micro_pinout.jpg)
 
 ## Programming
 1. Download and install [QMK Toolbox](https://qmk.fm/toolbox/)
@@ -99,7 +95,7 @@ the top row (ROW 0) should go to D3 on the Pro Micro, the second row (ROW 1) to 
    - make sure the correct micro-controller is selected (ATmega32U4 for Pro Micro)
    - press reset button on micro-controller (if available) or short RST to GND
    - wait for "Flash complete!" message
-5. Your keyboard should now be functional open keyboard tester to verify all keys work: [Keyboard Tester](https://www.keyboardtester.com/)
+5. Your keyboard should now be functional. Open a [keyboard tester](https://www.keyboardtester.com/) to verify all keys work.
 6. If you want to customize the keymap or Wiring, you can use [keyboard firmware builder](https://kbfirmware.com/), click upload and open the k3yb0rg.json file.
 
 ## Assembly
