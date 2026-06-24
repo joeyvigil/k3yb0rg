@@ -1,44 +1,61 @@
 # K3YB0RG
 
-v4n4g0n inspired, 3d printable keyboard
+> A 3D-printable, hand-wired mechanical keyboard inspired by the **v4n4g0n** ergo layout.
 
-![K3YB0RG](images/topView.jpg)
-![K3YB0RG](images/sideView.jpg)
-![K3YB0RG](images/assem_pic.jpg)
-![K3YB0RG](images/assem_pic2.jpg)
-![K3YB0RG](images/assem_pic3.jpg)
-![K3YB0RG](images/top_diss.jpg)
-![K3YB0RG](images/top_diss2.jpg)
+![Top view of the assembled K3YB0RG keyboard](images/topView.jpg)
+
+The K3YB0RG is a compact **49-key** board you print, hand-wire, and flash yourself. It runs
+[QMK](https://qmk.fm/) on a Pro Micro (ATmega32U4), so the layout and layers are fully
+customizable. This guide walks through every step — printing the case, wiring the switch
+matrix, flashing the firmware, and final assembly.
+
+**Build at a glance:** ~49 switches + diodes · a Pro Micro · 4 printed parts · basic soldering.
+A good intermediate project — if you can solder a straight joint, you can build this.
+
+## Contents
+
+- [Materials](#materials)
+- [3D Printing](#3d-printing)
+- [Soldering & Wiring](#soldering)
+- [Programming](#programming)
+- [Assembly](#assembly)
+- [Layers & Customization](#layers)
+- [Gallery](#gallery)
+- [Build Videos](#video-guide)
+- [License](#license)
 
 ## Materials
-1. 3D Printer
-2. Filament (PLA)
-3. 1N4148 diodes (one for each switch)
-4. Switches
-5. Keycaps
-6. Stabilizers (6.25u Cherry style for space bar)
-7. Micro-Controller (I used a Pro Micro with USB C, but others with ATmega32U4 will work)
-8. Nuts and Bolts (12 M3 x 16mm hex screws and nuts)
-9. Wire (I've had the most luck only using 20-28 awg solid core wire. I use the soldering iron to remove insulation.)
-10. USB Cable (USB C to USB A in my case)
-11. Soldering Iron (A basic soldering iron will do, quality does not matter too much)
-12.  Solder (60-40 rosin core solder works best)
-13.  Solder Sucker
-14.  Zip Ties (for securing micro-controller)
+
+**Parts**
+- 1N4148 diodes — one per switch (~49)
+- MX-style switches (49)
+- Keycaps
+- Stabilizers — 6.25u Cherry-style for the space bar
+- Microcontroller — a Pro Micro with USB-C (any **ATmega32U4** board works)
+- 12× **M3 × 16mm** hex screws + nuts
+- 20–28 AWG **solid-core** wire (I burn the insulation off at solder points with the iron)
+- USB cable (USB-C to USB-A, in my case)
+- Zip ties (to secure the microcontroller)
+
+**Tools**
+- 3D printer + PLA filament
+- Soldering iron (a basic one is fine — quality doesn't matter much)
+- Solder — 60/40 rosin core works best
+- Solder sucker
 
 ## 3D Printing
 
-1. Download the STL files from the releases section.
-2. Slice the files using your preferred slicer settings. I recommend using:
-   - a layer height of 0.2mm
-   - printing at 90% infill 
-   - a brim for better bed adhesion
+1. Download the STL files from the [`stl/`](stl) folder (or the [Releases](../../releases) page).
+2. Slice with your preferred settings. I recommend:
+   - 0.2mm layer height
+   - 90% infill
+   - a brim for bed adhesion
    - supports for the bottom parts
-3. Print the following parts:
-    - V4N_bot_left.stl (fits a wide range of micro-controllers)
-    - V4N_bot_right.stl
-    - V4N_top_left.stl
-    - V4N_top_right.stl
+3. Print these four parts:
+   - `V4N_bot_left.stl` (fits a wide range of microcontrollers)
+   - `V4N_bot_right.stl`
+   - `V4N_top_left.stl`
+   - `V4N_top_right.stl`
 
 ## Soldering
 
@@ -53,7 +70,7 @@ Every switch has two legs, and you solder **three things** to them:
 
 The diode prevents *ghosting* (phantom keypresses when several keys are held at once). It only passes current one way, so **every diode must face the same direction** — on this board the **black band points toward the row**. Keep them consistent and the matrix just works.
 
-![How the K3YB0RG matrix is wired](images/matrix_diagram.png)
+![Hand-wiring map: keys in real positions with color-coded row and column wires, diodes, and the Pro Micro pinout](images/matrix_diagram.png)
 
 **Where the wires land on the Pro Micro** (these come straight from `k3yb0rg.json`, so they always match the firmware):
 
@@ -64,66 +81,99 @@ The diode prevents *ghosting* (phantom keypresses when several keys are held at 
 
 If a key misreads after flashing, it's almost always one row/column wire on the wrong pin, or a diode soldered in backwards.
 
-The photos below show the same thing on a real board.
-
-### Rows
+### Step 1 — Rows
 
 1. Place all switches into the top case pieces.
-2. Put in space key Stabilizer (you'll regret having to de-solder later if you don't do it now)
+2. Install the space-bar stabilizer now (you'll regret having to de-solder later if you don't).
 3. Solder a diode to each switch with the **black band facing the row wire** (it points down in the photo below):
    ![A row of switches with a diode soldered to each, black band facing the row wire](images/rows.jpg)
-4. Solder a wire at the end of each row of switches (this will go to the micro-controller).
+4. Solder a wire connecting the diodes along each row (this run goes to the microcontroller).
 
-### Columns
-1. Cut pieces of wire long enough to reach from the top of the switch to the micro-controller pins.
-2. Solder the wires in the following configuration:
-    - **Tip:** I like to burn away the insulation on the wire at the points where I want to solder.
-![Column Wiring](images/wiring.jpg)
+### Step 2 — Columns
 
-### Microcontroller
-1. Solder wires to the microcontroller in the following configuration:
-![kbfirmware pin assignment for the Pro Micro](images/pins.jpg)
+1. Cut wire long enough to reach from each switch's other leg to the microcontroller pins.
+2. Join each column down its switches as shown:
+   - **Tip:** burn the insulation off the wire with the iron at each solder point.
+   ![Column wiring across the switch matrix](images/wiring.jpg)
+
+### Step 3 — Microcontroller
+
+Solder the 17 row/column wires to the Pro Micro using the pins in the table above (and the diagram). For reference, the kbfirmware view and a Pro Micro pinout:
+
+![kbfirmware pin assignment](images/pins.jpg)
 ![Pro Micro pinout reference](images/pro_micro_pinout.jpg)
 
 ## Programming
-1. Download and install [QMK Toolbox](https://qmk.fm/toolbox/)
-2. Download the hex file k3yb0rg.hex.
-3. Connect the micro-controller to your computer.
-4. Open QMK Toolbox and flash the k3yb0rg.hex file to the micro-controller.
-   - open hex file
-   - check "Auto-flash"
-   - make sure the correct micro-controller is selected (ATmega32U4 for Pro Micro)
-   - press reset button on micro-controller (if available) or short RST to GND
-   - wait for "Flash complete!" message
+
+1. Download and install [QMK Toolbox](https://qmk.fm/toolbox/).
+2. Download the `k3yb0rg.hex` file from this repo.
+3. Connect the microcontroller to your computer.
+4. In QMK Toolbox:
+   - open the hex file
+   - check **Auto-flash**
+   - select the right MCU (**ATmega32U4** for a Pro Micro)
+   - press the reset button (or short **RST** to **GND**)
+   - wait for **"Flash complete!"**
 5. Your keyboard should now be functional. Open a [keyboard tester](https://www.keyboardtester.com/) to verify all keys work.
-6. If you want to customize the keymap or Wiring, you can use [keyboard firmware builder](https://kbfirmware.com/), click upload and open the k3yb0rg.json file.
+6. To customize the keymap or wiring, use [Keyboard Firmware Builder](https://kbfirmware.com/) → **Upload** → open `k3yb0rg.json`.
 
 ## Assembly
-1. Place the micro-controller into the bottom left case piece and secure it with a zip tie.
-2. assemble the top and bottom case pieces together using the 3M x 16mm screws and nuts.
-3. Place keycaps on switches.
+
+1. Place the microcontroller in the bottom-left case piece and secure it with a zip tie.
+2. Join the top and bottom case pieces with the **M3 × 16mm** screws and nuts.
+3. Pop on the keycaps.
 4. Enjoy your new keyboard!
 
-
-## V4N4G0N inspired design
-
-![K3YB0RG](images/FeZixgI.jpg)
-
-![K3YB0RG](images/v4n4g0n-r1.png)
-
 ## Layers
-you can edit the layers using keyboard firmware builder or QMK Configurator. (Using the k3yb0rg.json file)
-![Layers](images/layer1.jpg)
-![Layers](images/layer2.jpg)
-![Layers](images/layer3.jpg)
 
+Edit the layers in [Keyboard Firmware Builder](https://kbfirmware.com/) or QMK Configurator using `k3yb0rg.json`.
+
+<table>
+  <tr>
+    <td><img src="images/layer1.jpg" alt="Layer 1 keymap"></td>
+    <td><img src="images/layer2.jpg" alt="Layer 2 keymap"></td>
+    <td><img src="images/layer3.jpg" alt="Layer 3 keymap"></td>
+  </tr>
+</table>
+
+## Gallery
+
+<table>
+  <tr>
+    <td><img src="images/sideView.jpg" alt="Side view of the assembled keyboard"></td>
+    <td><img src="images/assem_pic.jpg" alt="Assembled keyboard"></td>
+    <td><img src="images/assem_pic2.jpg" alt="Assembled keyboard, alternate angle"></td>
+  </tr>
+  <tr>
+    <td><img src="images/assem_pic3.jpg" alt="Assembled keyboard, close up"></td>
+    <td><img src="images/top_diss.jpg" alt="Top case disassembled showing the switch matrix"></td>
+    <td><img src="images/top_diss2.jpg" alt="Switch matrix wiring detail"></td>
+  </tr>
+</table>
+
+### The v4n4g0n-inspired design
+
+<table>
+  <tr>
+    <td><img src="images/FeZixgI.jpg" alt="v4n4g0n keyboard that inspired this design"></td>
+    <td><img src="images/v4n4g0n-r1.png" alt="v4n4g0n layout reference"></td>
+  </tr>
+</table>
 
 ## Video Guide
-Here is an old video guide I made for a previous keyboard:
-[![K3YB0RG Build Guide](https://img.youtube.com/vi/XAc28t4e77w/0.jpg)](https://www.youtube.com/watch?v=XAc28t4e77w)
 
-## Timelapse
+An older video guide I made for a previous keyboard (the process is the same):
 
-[![K3YB0RG Timelapse](https://img.youtube.com/vi/-jxHc12UWSU/0.jpg)](https://youtu.be/-jxHc12UWSU)
+[![K3YB0RG build guide video](https://img.youtube.com/vi/XAc28t4e77w/0.jpg)](https://www.youtube.com/watch?v=XAc28t4e77w)
+
+**Print timelapse:**
+
+[![K3YB0RG print timelapse](https://img.youtube.com/vi/-jxHc12UWSU/0.jpg)](https://youtu.be/-jxHc12UWSU)
+
+## License
+
+Released under the terms in [LICENSE](LICENSE).
 
 ## Thanks
+
+<!-- (existing thanks/credits go here) -->
