@@ -42,6 +42,30 @@ v4n4g0n inspired, 3d printable keyboard
 
 ## Soldering
 
+### How the wiring works — read this first
+
+The Pro Micro doesn't have one pin per key. The 49 keys are wired as a **grid of 5 rows × 12 columns**, and the controller scans that grid to detect presses — so you only run **5 + 12 = 17** signal wires, not 49.
+
+Every switch has two legs, and you solder **three things** to them:
+
+- **One leg → its COLUMN** — joined by a wire to every other switch in the same vertical column.
+- **Other leg → a DIODE → its ROW** — solder a diode to the second leg, then join the diodes along each horizontal row.
+
+The diode prevents *ghosting* (phantom keypresses when several keys are held at once). It only passes current one way, so **every diode must face the same direction** — on this board the **black band points toward the row**. Keep them consistent and the matrix just works.
+
+![How the K3YB0RG matrix is wired](images/matrix_diagram.png)
+
+**Where the wires land on the Pro Micro** (these come straight from `k3yb0rg.json`, so they always match the firmware):
+
+| | Pins (in order) |
+|---|---|
+| **Rows** 0 → 4 (diode side) | `D3, D2, D1, D0, D4` |
+| **Columns** 0 → 11 (other leg) | `C6, D7, E6, B4, B5, B6, B2, B3, B1, F7, F6, F5` |
+
+If a key misreads after flashing, it's almost always one row/column wire on the wrong pin, or a diode soldered in backwards.
+
+The photos below show the same thing on a real board.
+
 ### Rows
 
 1. Place all switches into the top case pieces.
